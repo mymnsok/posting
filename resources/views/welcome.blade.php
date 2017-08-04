@@ -3,18 +3,18 @@
 @section('content')
     @if (Auth::check())
         <div class="row">
-            <aside class="col-xs-4">
+            <aside class="col-md-4 col-md-12">
                 {!! Form::open(['route' => 'posts.store']) !!}
                     <div class="form-group">
-                      {!! Form::textarea('content', old('content'), ['class' => 'form-control', 'rows' => '5']) !!}
+                      {!! Form::textarea('content', old('content'), ['class' => 'form-control', 'rows' => '10']) !!}
                     </div>
                     {!! Form::submit('Post', ['class' => 'btn btn-primary btn-block']) !!}
                 {!! Form::close() !!}
             </aside>
-            <div class="col-xs-8">
-                @if (count($posts) > 0)
-                    @include('posts.posts', ['posts' => $posts])
-                @endif
+            <div class="col-md-8 col-xs-12">
+            @if (count($posts) > 0)
+                @include('posts.posts', ['posts' => $posts])
+            @endif
             </div>
         </div>
     @else

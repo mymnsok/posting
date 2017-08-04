@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use App\Post;
+
 class Postscontroller extends Controller
 {
     /**
@@ -67,7 +69,11 @@ class Postscontroller extends Controller
      */
     public function edit($id)
     {
-        //
+        $post = Post::find($id);
+        
+        return view('posts.edit',[
+            'post' => $post,
+        ]);
     }
 
     /**
@@ -79,7 +85,14 @@ class Postscontroller extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        //送られてきたidを探す
+        $post = Post::find($id);
+        //入れる
+        $post->content = $request->content;
+        //保存する        
+        $post->save();
+        
+        return redirect('/');
     }
 
     /**

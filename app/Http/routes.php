@@ -23,5 +23,5 @@ Route::get('logout', 'Auth\AuthController@getLogout')->name('logout.get');
 Route::get('/', 'WelcomeController@index');
 
 Route::group(['middleware' => 'auth'],function(){
-   Route::resource('posts', 'PostsController', ['only' => ['store', 'destroy']]);
+   Route::resource('posts', 'PostsController');
 });

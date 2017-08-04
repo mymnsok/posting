@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use App\Post;
+
 class WelcomeController extends Controller
 {
     /**
@@ -17,18 +19,16 @@ class WelcomeController extends Controller
     public function index()
     {
         $data = [];
-        
         if (\Auth::check()) {
-
             $user = \Auth::user();
-            $posts = $user->posts()->orderBy('created_at', 'desc')->paginate(10);
-
+            //$posts = $user->posts()->orderBy('created_at', 'desc')->paginate(10);
+            $posts = Post::orderBy('updated_at', 'desc')->paginate(5);
+            
             $data = [
                 'user' => $user,
                 'posts' => $posts,
             ];
         }
-        
         return view('welcome', $data);
     }
 

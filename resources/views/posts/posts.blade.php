@@ -13,6 +13,9 @@
             <div>
                 {!! nl2br(e($post->content)) !!}
             </div>
+            @if(Auth::user()->id === $user->id)
+                {!! link_to_route('posts.edit', 'Edit', ['id' => $post->id], ['class' => 'btn btn-warning btn-xs edit_btn']) !!}
+            @endif
         </div>
     </li>
 
