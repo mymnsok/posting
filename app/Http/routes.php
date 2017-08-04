@@ -24,4 +24,5 @@ Route::get('/', 'WelcomeController@index');
 
 Route::group(['middleware' => 'auth'],function(){
    Route::resource('posts', 'PostsController');
+   Route::resource('user', 'UserController', ['only' => ['show']]);
 });

@@ -12,4 +12,9 @@ class Post extends Model
     {
         return $this->belongsTo(User::class);
     }
+    
+    public function favoritings(){
+        
+        return $this->belogsToMany(User::class, 'user_post')->withtimestamps();
+    }
 }

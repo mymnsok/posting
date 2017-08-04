@@ -8,10 +8,11 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand logo fz_l" href="/">OriginPosts</a>
+                <a class="navbar-brand logo fz_l" href="/">Posting</a>
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
+                    <li><a href="{{ route('user.show', Auth::user()->id) }}">My Page</a></li>
                     <li>{!! link_to_route('logout.get', 'Logout') !!}</li>
                 </ul>
             </div>

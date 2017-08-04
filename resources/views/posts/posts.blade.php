@@ -8,7 +8,7 @@
         </div>
         <div class="media-body">
             <div>
-                {!! $user->name !!}　<span class="text-muted">posted at {{ $post->created_at }}</span>
+                {{$user->name}}　<span class="text-muted">posted at {{ $post->created_at }}</span>
             </div>
             <div>
                 {!! nl2br(e($post->content)) !!}

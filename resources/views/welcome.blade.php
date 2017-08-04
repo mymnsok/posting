@@ -3,7 +3,7 @@
 @section('content')
     @if (Auth::check())
         <div class="row">
-            <aside class="col-md-4 col-md-12">
+            <aside class="col-md-4 col-xs-12">
                 {!! Form::open(['route' => 'posts.store']) !!}
                     <div class="form-group">
                       {!! Form::textarea('content', old('content'), ['class' => 'form-control', 'rows' => '10']) !!}

@@ -41,4 +41,10 @@ class User extends Model implements AuthenticatableContract,
     {
         return $this->hasMany(Post::class);
     }
+    
+    public function favoritings(){
+        
+        return $this->belogsToMany(Post::class, 'user_post')->withtimestamps();
+    }
+    
 }
