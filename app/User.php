@@ -42,9 +42,43 @@ class User extends Model implements AuthenticatableContract,
         return $this->hasMany(Post::class);
     }
     
-    public function favoritings(){
-        
-        return $this->belogsToMany(Post::class, 'user_post')->withtimestamps();
+    public function user_posts()
+    {
+        return $this->belongsToMany(Post::class, 'user_post', 'user_id', 'post_id')->withtimestamps();
+    }
+    
+    public function favorite($postId)
+    {
+        // 既に登録しているかの確認
+        $exist = $this->is_user_posts($postId);
+    
+        //登録していないなら登録する
+        if($exist){
+            return false;
+        } else{
+            $this->user_posts()->attach($postId);
+            return true;
+        }
+    }
+    
+    public function unfavorite($postId)
+    {
+        // 既に登録しているかの確認
+        $exist = $this->is_user_posts($postId);
+    
+        //登録していないなら登録する
+        if($exist){
+            $this->user_posts()->detach($postId);
+            return true;
+        } else{
+           return false; 
+        }
+    }
+    
+    // user_postテーブルに登録されていたらtrueを返す関数
+    public function is_user_posts($postId)
+    {
+        return $this->user_posts()->where('post_id', $postId)->exists();
     }
     
 }

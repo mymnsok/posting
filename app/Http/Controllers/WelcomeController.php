@@ -21,7 +21,6 @@ class WelcomeController extends Controller
         $data = [];
         if (\Auth::check()) {
             $user = \Auth::user();
-            //$posts = $user->posts()->orderBy('created_at', 'desc')->paginate(10);
             $posts = Post::orderBy('updated_at', 'desc')->paginate(5);
             
             $data = [

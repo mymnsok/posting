@@ -19,8 +19,8 @@ class CreateUserPostTable extends Migration
             $table->timestamps();
             
             // 外部キー設定
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('post_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');;
+            $table->foreign('post_id')->references('id')->on('posts')->onDelete('cascade');;
             
             // 何度もお気に入りにできないように
             $table->unique(['user_id', 'post_id']);

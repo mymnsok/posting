@@ -14,6 +14,8 @@
             <div class="col-md-8 col-xs-12">
             @if (count($posts) > 0)
                 @include('posts.posts', ['posts' => $posts])
+            @else
+               <p>コメントはありません。</p>
             @endif
             </div>
         </div>
@@ -24,8 +26,8 @@
             <p><small>What is OriginPosts?<br>
             OriginPosts is a simple bulletin board.</small></p>
             
-            {!! link_to_route('signup.get', 'Sign up', null, ['class' => 'btn btn-primary btn-lg auth_btn']) !!}
-            {!! link_to_route('login.get', 'Log in', null, ['class' => 'btn btn-default btn-lg auth_btn']) !!}
+            {!! link_to_route('signup.get', 'Sign up', null, ['class' => 'btn btn-primary btn-lg btn150']) !!}
+            {!! link_to_route('login.get', 'Log in', null, ['class' => 'btn btn-default btn-lg btn150']) !!}
         </div>
     </div>
     @endif

@@ -13,6 +13,7 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="{{ route('user.show', Auth::user()->id) }}">My Page</a></li>
+                    <li><a href="{{ route('favoritings.get', Auth::user()->id) }}">Favorite</a></li>
                     <li>{!! link_to_route('logout.get', 'Logout') !!}</li>
                 </ul>
             </div>

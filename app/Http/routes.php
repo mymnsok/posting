@@ -25,4 +25,10 @@ Route::get('/', 'WelcomeController@index');
 Route::group(['middleware' => 'auth'],function(){
    Route::resource('posts', 'PostsController');
    Route::resource('user', 'UserController', ['only' => ['show']]);
+
+   Route::group(['prefix' => 'user/{id}'], function () {
+      Route::post('favorite', 'UserFavoriteController@store')->name('favorite.post');
+      Route::post('unfavorite', 'UserFavoriteController@destroy')->name('unfavorite.post');
+      Route::get('favoritings', 'UserFavoriteController@favoritings')->name('favoritings.get');
+   });
 });

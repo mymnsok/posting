@@ -103,6 +103,14 @@ class Postscontroller extends Controller
      */
     public function destroy($id)
     {
-        //
+        $post = Post::find($id);
+        
+        if(\Auth::user()->id === $post->user_id){
+            
+           $post->delete();
+        }
+        
+        return redirect('/');
+        
     }
 }

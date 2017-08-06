@@ -9,7 +9,7 @@ use App\Http\Controllers\Controller;
 
 use App\User;
 
-class UserController extends Controller
+class UserFavoriteController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,7 +18,7 @@ class UserController extends Controller
      */
     public function index()
     {
-
+        //
     }
 
     /**
@@ -37,9 +37,12 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $id)
     {
-        //
+        //favorite（中間テーブルに保存するメソッド）を実行する
+        \Auth::user()->favorite($id);
+        //元の画面へリダイレクトする
+        return redirect()->back();
     }
 
     /**
@@ -50,17 +53,7 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        $data = [];
-        if (\Auth::check()) {
-            $user = \Auth::user();
-            $posts = $user->posts()->orderBy('updated_at', 'desc')->paginate(5);
-            
-            $data = [
-                'user' => $user,
-                'posts' => $posts,
-            ];
-        }
-        return view('users.user', $data);
+        //
     }
 
     /**
@@ -94,7 +87,23 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        \Auth::user()->unfavorite($id);
+        //元の画面へリダイレクトする
+        return redirect()->back();
     }
-    
+
+    public function favoritings($id)
+    {
+        $data = [];
+        if (\Auth::check()) {
+            $user = User::find($id);
+            $favoritings = $user->user_posts()->paginate(5);
+            
+            $data = [
+                'user' => $user,
+                'posts' => $favoritings,
+            ];
+        }
+        return view('users.user_favorite', $data);   
+    }
 }

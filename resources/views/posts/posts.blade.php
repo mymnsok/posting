@@ -13,9 +13,16 @@
             <div>
                 {!! nl2br(e($post->content)) !!}
             </div>
-            @if(Auth::user()->id === $user->id)
-                {!! link_to_route('posts.edit', 'Edit', ['id' => $post->id], ['class' => 'btn btn-warning btn-xs edit_btn']) !!}
-            @endif
+            <div class="btn-toolbar">
+                <div class="btn-group">
+                    @include('user_favorite.favorite_button')
+                </div>
+                <div class="btn-group">
+                    @if(Auth::user()->id === $user->id)
+                        {!! link_to_route('posts.edit', 'Edit', ['id' => $post->id], ['class' => 'btn btn-default btn-xs btn100']) !!}
+                    @endif
+                </div>
+            </div>
         </div>
     </li>
 
